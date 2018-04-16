@@ -5,10 +5,11 @@ using UnityEngine;
 public class BallMovement : MonoBehaviour {
 
     public float movementSpeed;
-    public float extraSpeedPerHit;
-    public float maxExtraSpeed;
+    public PowerUpController powerUpController;
+    //public float extraSpeedPerHit;
+    //public float maxExtraSpeed;
 
-    int hitCounter;
+    //int hitCounter;
 
 	// Use this for initialization
 	void Start () {
@@ -30,7 +31,10 @@ public class BallMovement : MonoBehaviour {
 
         this.PositionBall(isStartingPlayer1);
 
-        this.hitCounter = 0;
+        powerUpController.powerUpActive = false;
+        Destroy(GameObject.FindGameObjectWithTag("Collectable"));
+
+        //this.hitCounter = 0;
 
         yield return new WaitForSeconds(2);
 
@@ -46,16 +50,23 @@ public class BallMovement : MonoBehaviour {
 
         dir = dir.normalized;
 
-        float speed = this.movementSpeed + this.hitCounter * this.extraSpeedPerHit;
-        Debug.Log("Speed: " + speed);
+        //float speed = this.movementSpeed + this.hitCounter * this.extraSpeedPerHit;
 
         Rigidbody2D rigidbody2D = this.gameObject.GetComponent<Rigidbody2D>();
-        rigidbody2D.velocity = dir * speed;
+        rigidbody2D.velocity = dir * movementSpeed;
     }
 
-    public void IncreaseHitCounter() {
+    public void MoveBallWithSpeed(Vector2 dir, float movementSpeed) {
+
+        dir = dir.normalized;
+
+        Rigidbody2D rigidbody2D = this.gameObject.GetComponent<Rigidbody2D>();
+        rigidbody2D.velocity = dir * (this.movementSpeed + movementSpeed);
+    }
+
+    /*public void IncreaseHitCounter() {
         if(this.hitCounter * this.extraSpeedPerHit <= this.maxExtraSpeed) {
             this.hitCounter++;
         }
-    }
+    }*/
 }

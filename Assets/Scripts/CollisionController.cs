@@ -6,6 +6,15 @@ public class CollisionController : MonoBehaviour {
 
     public BallMovement ballMovement;
     public ScoreController scoreController;
+    public float speedPowerUpAmount;
+    public bool speedPowerUp = false;
+    public bool isPlayer1;
+
+    Collectables collectables;
+
+    private void Start() {
+        this.collectables = GameObject.FindGameObjectWithTag("Collectables").GetComponent<Collectables>();
+    }
 
     void BounceFromRacket(Collision2D c) {
 
@@ -24,13 +33,29 @@ public class CollisionController : MonoBehaviour {
 
         float y = (ballPosition.y - racketPosition.y) / racketHeight;
 
-        this.ballMovement.IncreaseHitCounter();
-        this.ballMovement.MoveBall(new Vector2(x, y));
+        if (speedPowerUp) {
+            if(isPlayer1 && c.gameObject.name == "Racket1") {
+                this.ballMovement.MoveBallWithSpeed(new Vector2(x, y), speedPowerUpAmount);
+            }
+            else if(!isPlayer1 && c.gameObject.name == "Racket2") {
+                this.ballMovement.MoveBallWithSpeed(new Vector2(x, y), speedPowerUpAmount);
+            }          
+        }
+        else {
+            //this.ballMovement.IncreaseHitCounter();
+            this.ballMovement.MoveBall(new Vector2(x, y));
+        }      
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if(collision.gameObject.name == "Racket1" || collision.gameObject.name == "Racket2") {
+
+        if(collision.gameObject.name == "Racket1") {
             this.BounceFromRacket(collision);
+            this.collectables.SpawnRandomCollectable(true);
+        }
+        else if(collision.gameObject.name == "Racket2") {
+            this.BounceFromRacket(collision);
+            this.collectables.SpawnRandomCollectable(false);
         }
         else if (collision.gameObject.name == "WallLeft") {
             this.scoreController.goalPlayer2();
