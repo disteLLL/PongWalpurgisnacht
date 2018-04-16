@@ -42,7 +42,7 @@ public class CollisionController : MonoBehaviour {
             }          
         }
         else {
-            //this.ballMovement.IncreaseHitCounter();
+            this.ballMovement.IncreaseHitCounter();
             this.ballMovement.MoveBall(new Vector2(x, y));
         }      
     }
