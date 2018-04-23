@@ -59,7 +59,7 @@ public class CollisionController : MonoBehaviour {
         }
         else if (collision.gameObject.name == "WallLeft") {
             this.scoreController.GoalPlayer2();
-            StartCoroutine(this.ballMovement.StartBall(false));
+            StartCoroutine(this.ballMovement.StartBall(true));
         }
         else if (collision.gameObject.name == "WallRight") {
             this.scoreController.GoalPlayer1();
