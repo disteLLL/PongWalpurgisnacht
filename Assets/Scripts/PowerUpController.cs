@@ -70,11 +70,11 @@ public class PowerUpController : MonoBehaviour {
                 
                 if (isPlayer1) {
                     PlayerPrefs.SetString("winner", PlayerPrefs.GetString("p2") + " is the winner!");
-                    SceneManager.LoadScene(2);
+                    StartCoroutine(ChangeLevel());
                 }
                 else {
                     PlayerPrefs.SetString("winner", PlayerPrefs.GetString("p1") + " is the winner!");
-                    SceneManager.LoadScene(2);
+                    StartCoroutine(ChangeLevel());
                 }
             }
         }
@@ -111,5 +111,14 @@ public class PowerUpController : MonoBehaviour {
         this.powerUpActive = true;
         this.powerUpType = powerUpType;
         this.activeUntilTime = Time.time + this.powerUpDuration;
+    }
+
+    IEnumerator ChangeLevel() {
+
+        yield return new WaitForSeconds(0.6f);
+
+        float fadeTime = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<SceneFader>().BeginFade(1);
+        yield return new WaitForSeconds(fadeTime);
+        SceneManager.LoadScene(2);
     }
 }

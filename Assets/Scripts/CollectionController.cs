@@ -15,16 +15,6 @@ public class CollectionController : MonoBehaviour {
 
         this.powerUpController.ActivatePowerUp(isPlayer1, collectableType);
 
-        /*if (collectableType == "speed") {
-
-        }
-        else if (collectableType == "increase") {
-            
-        }
-        else if (collectableType == "decrease") {
-
-        }
-        */
         Destroy(collectable);
     }
 

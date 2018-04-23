@@ -58,12 +58,12 @@ public class CollisionController : MonoBehaviour {
             this.collectables.SpawnRandomCollectable();
         }
         else if (collision.gameObject.name == "WallLeft") {
-            this.scoreController.goalPlayer2();
-            StartCoroutine(this.ballMovement.StartBall(true));
+            this.scoreController.GoalPlayer2();
+            StartCoroutine(this.ballMovement.StartBall(false));
         }
         else if (collision.gameObject.name == "WallRight") {
-            this.scoreController.goalPlayer1();
-            StartCoroutine(this.ballMovement.StartBall(false));
+            this.scoreController.GoalPlayer1();
+            StartCoroutine(this.ballMovement.StartBall(false));    
         }
         else {
             this.collectables.SpawnRandomCollectable();
