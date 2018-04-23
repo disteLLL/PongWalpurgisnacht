@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PowerUpController : MonoBehaviour {
 
@@ -64,6 +65,17 @@ public class PowerUpController : MonoBehaviour {
                 else {
                     collisionController.isPlayer1 = false;
                 }               
+            }
+            else if (this.powerUpType == "death") {
+                
+                if (isPlayer1) {
+                    PlayerPrefs.SetString("winner", PlayerPrefs.GetString("p2") + " is the winner!");
+                    SceneManager.LoadScene(2);
+                }
+                else {
+                    PlayerPrefs.SetString("winner", PlayerPrefs.GetString("p1") + " is the winner!");
+                    SceneManager.LoadScene(2);
+                }
             }
         }
         else {
