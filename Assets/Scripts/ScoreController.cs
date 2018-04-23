@@ -24,8 +24,13 @@ public class ScoreController : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (this.scorePlayer1 >= this.goalToWin || this.scorePlayer2 >= this.goalToWin) {
-            SceneManager.LoadScene(1);
+        if (this.scorePlayer1 >= this.goalToWin) {
+            PlayerPrefs.SetString("winner", PlayerPrefs.GetString("p1")+" is the winner!");
+            SceneManager.LoadScene(2);
+        }
+        else if (this.scorePlayer2 >= this.goalToWin) {
+            PlayerPrefs.SetString("winner", PlayerPrefs.GetString("p2") + " is the winner!");
+            SceneManager.LoadScene(2);
         }
     }
 

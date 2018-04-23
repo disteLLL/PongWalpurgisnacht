@@ -31,11 +31,14 @@ public class Collectables : MonoBehaviour {
                 if (r > 0.5f) {
                     newCollectable = Collectable.CreateSpeed();
                 }
-                else if (r < 0.25f) {
+                else if (r > 0.25f) {
                     newCollectable = Collectable.CreateIncrease();
                 }
-                else {
+                else if (r > 0.05f) {
                     newCollectable = Collectable.CreateDecrease();
+                }
+                else {
+                    newCollectable = Collectable.CreateDeath();
                 }
 
                 if (equalPowerUps) {
