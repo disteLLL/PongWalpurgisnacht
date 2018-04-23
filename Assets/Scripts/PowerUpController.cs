@@ -26,25 +26,30 @@ public class PowerUpController : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
-		if(isPlayer1) {
-            powerUpPlayer1();
-        }
-        else {
-            powerUpPlayer2();
-        } 
+        powerUp(isPlayer1);
 	}
 
-    private void powerUpPlayer1() {
+    private void powerUp(bool isPlayer1) {
         if (powerUpActive && Time.time < this.activeUntilTime) {
             if (this.powerUpType == "increase") {
                 if (isScaleOriginalIncrease) {
-                    racket1.transform.localScale += new Vector3(0, increaseAmount, 0);
+                    if(isPlayer1) {
+                        racket1.transform.localScale += new Vector3(0, increaseAmount, 0);
+                    }
+                    else {
+                        racket2.transform.localScale += new Vector3(0, increaseAmount, 0);
+                    } 
                     isScaleOriginalIncrease = false;
                 }
             }
             else if (this.powerUpType == "decrease") {
                 if (isScaleOriginalDecrease) {
-                    racket2.transform.localScale += new Vector3(0, -decreaseAmount, 0);
+                    if (isPlayer1) {
+                        racket2.transform.localScale += new Vector3(0, -decreaseAmount, 0);
+                    }
+                    else {
+                        racket1.transform.localScale += new Vector3(0, -decreaseAmount, 0);
+                    }
                     isScaleOriginalDecrease = false;
                 }
             }
@@ -52,8 +57,13 @@ public class PowerUpController : MonoBehaviour {
 
                 collisionController.speedPowerUp = true;
                 collisionController.speedPowerUpAmount = this.speedAmount;
-                collisionController.isPlayer1 = true;
 
+                if (isPlayer1) {
+                    collisionController.isPlayer1 = true;
+                }
+                else {
+                    collisionController.isPlayer1 = false;
+                }               
             }
         }
         else {
@@ -62,51 +72,21 @@ public class PowerUpController : MonoBehaviour {
         }
 
         if (this.powerUpType != "increase") {
-            racket1.transform.localScale = originalScale;
-            isScaleOriginalIncrease = true;    
-        }
-        if(this.powerUpType != "decrease") {       
-            racket2.transform.localScale = originalScale;
-            isScaleOriginalDecrease = true;   
-        }
-        if (this.powerUpType != "speed") {
-            collisionController.speedPowerUp = false;
-        }
-    }
-
-    private void powerUpPlayer2() {
-        if (powerUpActive && Time.time < this.activeUntilTime) {
-            if (this.powerUpType == "increase") {
-                if (isScaleOriginalIncrease) {
-                    racket2.transform.localScale += new Vector3(0, increaseAmount, 0);
-                    isScaleOriginalIncrease = false;
-                }
+            if (isPlayer1) {
+                racket1.transform.localScale = originalScale;
             }
-            else if (this.powerUpType == "decrease") {
-                if (isScaleOriginalDecrease) {
-                    racket1.transform.localScale += new Vector3(0, -decreaseAmount, 0);
-                    isScaleOriginalDecrease = false;
-                }
-            }
-            else if (this.powerUpType == "speed") {
-
-                collisionController.speedPowerUp = true;
-                collisionController.speedPowerUpAmount = this.speedAmount;
-                collisionController.isPlayer1 = false;
-                
-            }
-        }
-        else {
-            this.powerUpType = null;
-            this.powerUpActive = false;
-        }
-
-        if (this.powerUpType != "increase") {
-            racket2.transform.localScale = originalScale;
+            else {
+                racket2.transform.localScale = originalScale;
+            }           
             isScaleOriginalIncrease = true;
         }
         if (this.powerUpType != "decrease") {
-            racket1.transform.localScale = originalScale;
+            if (isPlayer1) {
+                racket2.transform.localScale = originalScale;
+            }
+            else {
+                racket1.transform.localScale = originalScale;
+            }
             isScaleOriginalDecrease = true;
         }
         if (this.powerUpType != "speed") {
