@@ -11,7 +11,7 @@ public class Collectables : MonoBehaviour {
     public float collectableSpeed;
     public float collectableChance;
 
-    //bool equalPowerUps;
+    bool equalPowerUps;
     float boundsTop;
     float boundsBottom;
 
@@ -21,7 +21,7 @@ public class Collectables : MonoBehaviour {
     }
 
 
-    public void SpawnRandomCollectable(bool isPlayer1){
+    public void SpawnRandomCollectable(){
 
         if(Random.value <= collectableChance) {
             if (!(powerUpController.powerUpActive) && (GameObject.FindGameObjectWithTag("Collectable") == null)) {
@@ -38,15 +38,15 @@ public class Collectables : MonoBehaviour {
                     newCollectable = Collectable.CreateDecrease();
                 }
 
-                if (isPlayer1/* && equalPowerUps*/) {
+                if (equalPowerUps) {
                     newCollectable.gameObject.transform.position = new Vector3(-100.0f, Random.Range(boundsBottom, boundsTop), 0.0f);
                     this.MoveCollectable(new Vector2(-1, 0), newCollectable);
-                    //equalPowerUps = false;
+                    equalPowerUps = false;
                 }
                 else {
                     newCollectable.gameObject.transform.position = new Vector3(100.0f, Random.Range(boundsBottom, boundsTop), 0.0f);
                     this.MoveCollectable(new Vector2(1, 0), newCollectable);
-                    //equalPowerUps = true;
+                    equalPowerUps = true;
                 }
             }
         }

@@ -51,11 +51,11 @@ public class CollisionController : MonoBehaviour {
 
         if(collision.gameObject.name == "Racket1") {
             this.BounceFromRacket(collision);
-            this.collectables.SpawnRandomCollectable(true);
+            this.collectables.SpawnRandomCollectable();
         }
         else if(collision.gameObject.name == "Racket2") {
             this.BounceFromRacket(collision);
-            this.collectables.SpawnRandomCollectable(false);
+            this.collectables.SpawnRandomCollectable();
         }
         else if (collision.gameObject.name == "WallLeft") {
             this.scoreController.goalPlayer2();
@@ -64,6 +64,9 @@ public class CollisionController : MonoBehaviour {
         else if (collision.gameObject.name == "WallRight") {
             this.scoreController.goalPlayer1();
             StartCoroutine(this.ballMovement.StartBall(false));
+        }
+        else {
+            this.collectables.SpawnRandomCollectable();
         }
     }
 }
