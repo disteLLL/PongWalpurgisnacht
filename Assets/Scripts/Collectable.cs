@@ -20,4 +20,9 @@ public class Collectable : MonoBehaviour {
 		GameObject speed = (GameObject)Instantiate(Resources.Load("Prefabs/Speed"));
 		return speed.GetComponent<Collectable>();
     }
+
+    public static Collectable CreateDeath() {
+        GameObject death = (GameObject)Instantiate(Resources.Load("Prefabs/Death"));
+        return death.GetComponent<Collectable>();
+    }
 }
