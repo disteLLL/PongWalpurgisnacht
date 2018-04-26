@@ -28,10 +28,10 @@ public class Collectables : MonoBehaviour {
                 float r = Random.value;
                 Collectable newCollectable;
 
-                if (r > 0.5f) {
+                if (r > 0.70f) {
                     newCollectable = Collectable.CreateSpeed();
                 }
-                else if (r > 0.25f) {
+                else if (r > 0.35f) {
                     newCollectable = Collectable.CreateIncrease();
                 }
                 else if (r > 0.05f) {

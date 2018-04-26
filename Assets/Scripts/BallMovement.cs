@@ -33,6 +33,7 @@ public class BallMovement : MonoBehaviour {
 
         powerUpController.powerUpActive = false;
         Destroy(GameObject.FindGameObjectWithTag("Collectable"));
+        this.gameObject.GetComponentInParent<PowerUpCooldown>().HideBar();
 
         this.hitCounter = 0;
 

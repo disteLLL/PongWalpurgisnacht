@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CollectionController : MonoBehaviour {
-
-    public PowerUpController powerUpController;
-
 	
     public void Collect(GameObject collectable, bool isPlayer1) {
 
@@ -13,8 +10,12 @@ public class CollectionController : MonoBehaviour {
 
         string collectableType = collectableScript.collectableType;
 
-        this.powerUpController.ActivatePowerUp(isPlayer1, collectableType);
+        this.gameObject.GetComponent<PowerUpController>().ActivatePowerUp(isPlayer1, collectableType);
 
+        if(collectableType != "death") {
+            this.gameObject.GetComponent<PowerUpCooldown>().StartCooldown(isPlayer1, collectableType);
+        }
+       
         Destroy(collectable);
     }
 
