@@ -772,9 +772,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8165f201ae033be428b26c0f0937b4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalToWin: 5
+  highlightDuration: 0.5
+  textFlashSize: 225
   scoreTextPlayer1: {fileID: 1128278616}
   scoreTextPlayer2: {fileID: 663033424}
-  goalToWin: 5
 --- !u!114 &634453107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -800,7 +802,7 @@ MonoBehaviour:
   collisionController: {fileID: 652259704}
   racket1: {fileID: 250513727}
   racket2: {fileID: 1894872554}
-  powerUpDuration: 5
+  powerUpDuration: 10
   increaseAmount: 70
   decreaseAmount: 50
   speedAmount: 300

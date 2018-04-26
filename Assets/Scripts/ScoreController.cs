@@ -14,10 +14,13 @@ public class ScoreController : MonoBehaviour
     private bool isWinnerPlayer1 = false;
     private bool isWinnerPlayer2 = false;
 
+    public int goalToWin;
+    public float highlightDuration = 0.2f;
+    public int textFlashSize = 150;
     public GameObject scoreTextPlayer1;
     public GameObject scoreTextPlayer2;
 
-    public int goalToWin;
+    
 
     private void Start() {
         uiScorePlayer1 = this.scoreTextPlayer1.GetComponent<Text>();
@@ -57,13 +60,13 @@ public class ScoreController : MonoBehaviour
 
     IEnumerator TextFlash(bool isPlayer1) {
         if (isPlayer1) {
-            uiScorePlayer1.fontSize = 150;
+            uiScorePlayer1.fontSize = textFlashSize;
         }
         else {
-            uiScorePlayer2.fontSize = 150;
+            uiScorePlayer2.fontSize = textFlashSize;
         }
         
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(highlightDuration);
 
         if(isPlayer1) {
             uiScorePlayer1.fontSize = 80;
