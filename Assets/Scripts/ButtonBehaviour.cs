@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ButtonBehaviour : MonoBehaviour
-{
+public class ButtonBehaviour : MonoBehaviour {
+
     public void MoveToScene(int sceneID) {
+
         SceneManager.LoadScene(sceneID);
         StartCoroutine(ChangeLevel(sceneID));
     }

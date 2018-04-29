@@ -6,8 +6,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(UnityEngine.Video.VideoPlayer))]
 public class GetMainCam : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    private void Awake() {
         GetComponent<UnityEngine.Video.VideoPlayer>().targetCamera = Camera.main;
-	}
+    }
 }

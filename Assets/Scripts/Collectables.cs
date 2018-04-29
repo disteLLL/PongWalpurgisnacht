@@ -4,29 +4,31 @@ using UnityEngine;
 
 public class Collectables : MonoBehaviour {
 
-    public PowerUpController powerUpController;
     public GameObject wallTop;
     public GameObject wallBottom;
-
     public float collectableSpeed;
     public float collectableChance;
 
-    bool equalPowerUps;
-    float boundsTop;
-    float boundsBottom;
+    private bool equalPowerUps;
+    private float boundsTop;
+    private float boundsBottom;
+    private Collectable newCollectable;
+    private PowerUpController powerUpController;
 
-    private void Start() {
+    private void Awake() {
+
+        powerUpController = this.gameObject.GetComponent<PowerUpController>();
         boundsTop = wallTop.transform.position.y - 50;
         boundsBottom = wallBottom.transform.position.y + 50;
     }
 
-
     public void SpawnRandomCollectable(){
 
         if(Random.value <= collectableChance) {
+
             if (!(powerUpController.powerUpActive) && (GameObject.FindGameObjectWithTag("Collectable") == null)) {
+
                 float r = Random.value;
-                Collectable newCollectable;
 
                 if (r > 0.70f) {
                     newCollectable = Collectable.CreateSpeed();
@@ -42,22 +44,30 @@ public class Collectables : MonoBehaviour {
                 }
 
                 if (equalPowerUps) {
+
                     newCollectable.gameObject.transform.position = new Vector3(-100.0f, Random.Range(boundsBottom, boundsTop), 0.0f);
                     this.MoveCollectable(new Vector2(-1, 0), newCollectable);
                     equalPowerUps = false;
                 }
                 else {
+
                     newCollectable.gameObject.transform.position = new Vector3(100.0f, Random.Range(boundsBottom, boundsTop), 0.0f);
                     this.MoveCollectable(new Vector2(1, 0), newCollectable);
                     equalPowerUps = true;
-                }
+                }    
             }
         }
     }
 
     public void MoveCollectable(Vector2 dir, Collectable collectable) {
+
         dir = dir.normalized;
         Rigidbody2D rigidbody2D = collectable.gameObject.GetComponent<Rigidbody2D>();
         rigidbody2D.velocity = dir * collectableSpeed;
+    }
+
+    public Color GetCollectableColor() {
+
+        return newCollectable.gameObject.GetComponent<SpriteRenderer>().color;
     }
 }

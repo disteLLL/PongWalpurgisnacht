@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour {
 
-    public float movementSpeed;
-    public PowerUpController powerUpController;
+    public float movementSpeed;  
     public float extraSpeedPerHit;
     public float maxExtraSpeed;
 
-    int hitCounter;
+    private PowerUpController powerUpController;
+    private int hitCounter;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake() {
+
+        powerUpController = this.gameObject.GetComponentInParent<PowerUpController>();
+    }
+
+    private void Start () {
+
         StartCoroutine(this.StartBall());
 	}
 
-    void PositionBall (bool isStartingPlayer1) {
+    private void PositionBall (bool isStartingPlayer1) {
+
         this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 
         if(isStartingPlayer1) {
@@ -33,6 +39,7 @@ public class BallMovement : MonoBehaviour {
 
         powerUpController.powerUpActive = false;
         Destroy(GameObject.FindGameObjectWithTag("Collectable"));
+        this.gameObject.GetComponentInParent<PowerUpCooldown>().HideBar();
 
         this.hitCounter = 0;
 
@@ -67,6 +74,7 @@ public class BallMovement : MonoBehaviour {
     }
 
     public void IncreaseHitCounter() {
+
         if(this.hitCounter * this.extraSpeedPerHit <= this.maxExtraSpeed) {
             this.hitCounter++;
         }

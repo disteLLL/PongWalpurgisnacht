@@ -24,19 +24,23 @@ public class SceneFader : MonoBehaviour {
     }
 
     public float BeginFade (int direction) {
+
         fadeDir = direction;
         return fadeSpeed;
     }
 
-    private void OnEnable() {  
+    private void OnEnable() {
+
         SceneManager.sceneLoaded += OnLevelFinishedLoading;       
     }
 
     private void OnDisable() {
+
         SceneManager.sceneLoaded -= OnLevelFinishedLoading;
     }
 
     private void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
+
         if(preventFirstFade && scene.name == "Start") {
             preventFirstFade = false;           
         }

@@ -6,15 +6,24 @@ using UnityEngine.Video;
 public class VideoClipChanger : MonoBehaviour {
 
     public VideoClip[] videoClips;
+    public float[] cameraAlphas;
 
     private VideoPlayer videoPlayer;
+    private static int clipIndex = 0;
 
     private void Awake() {
+
         videoPlayer = this.gameObject.GetComponent<VideoPlayer>();
     }
 
-    // Use this for initialization
-    void Start () {
-        videoPlayer.clip = videoClips[1];
+    private void Start () {
+
+        videoPlayer.clip = videoClips[clipIndex];
+        videoPlayer.targetCameraAlpha = cameraAlphas[clipIndex];
+        clipIndex++;
+
+        if (clipIndex == videoClips.Length) {
+            clipIndex = 0;
+        }
     }
 }
