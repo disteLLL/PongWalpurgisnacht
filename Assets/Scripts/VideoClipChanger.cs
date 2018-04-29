@@ -15,6 +15,6 @@ public class VideoClipChanger : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        videoPlayer.clip = videoClips[2];
+        videoPlayer.clip = videoClips[1];
     }
 }

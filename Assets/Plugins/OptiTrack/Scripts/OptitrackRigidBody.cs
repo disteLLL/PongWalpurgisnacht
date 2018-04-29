@@ -68,7 +68,7 @@ public class OptitrackRigidBody : MonoBehaviour
         if ( rbState != null )
         {
 			Vector3 position = rbState.Pose.Position * moveFactor;
-			Vector2 newPos =  new Vector2 (position.x, position.z);
+			Vector2 newPos =  new Vector2 (position.z, position.x);
 			GetComponent<Rigidbody2D> ().AddForce(oldPos - newPos);
 			oldPos = newPos;
         }
