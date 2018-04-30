@@ -1248,6 +1248,7 @@ GameObject:
   - component: {fileID: 1371109164}
   - component: {fileID: 1371109163}
   - component: {fileID: 1371109162}
+  - component: {fileID: 1371109165}
   m_Layer: 5
   m_Name: InputFieldPlayer1
   m_TagString: Untagged
@@ -1371,6 +1372,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1371109160}
+--- !u!114 &1371109165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1371109160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4105a7799eda04e93020971ea0256c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextInputField: {fileID: 1667134567}
 --- !u!4 &1374590063 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4021839126608334, guid: 782687bd004de3d4dbecfb0f13aa8013,

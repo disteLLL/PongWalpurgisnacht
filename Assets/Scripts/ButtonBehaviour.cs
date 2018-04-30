@@ -1,12 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class ButtonBehaviour : MonoBehaviour {
 
     public AudioClip gameStart1;
     public AudioClip gameStart2;
+
+    private Button button;
+
+    private void Awake() {
+        button = this.gameObject.GetComponent<Button>();
+    }
+
+    private void Update() {
+        if(Input.GetButtonDown("Submit") && this.name == "RestartButton") {
+            button.onClick.Invoke();
+        }
+        else if(Input.GetButtonDown("NewGame") && this.name == "NewGameButton") {
+            button.onClick.Invoke();
+        }
+    }
 
     public void MoveToScene(int sceneID) {
 

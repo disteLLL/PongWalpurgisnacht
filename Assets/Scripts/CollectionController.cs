@@ -6,6 +6,7 @@ public class CollectionController : MonoBehaviour {
 
     public AudioClip witchPowerUp;
     public AudioClip devilPowerUp;
+    public AudioClip deathPowerUp;
 
     private Collectables collectables;  
 
@@ -30,6 +31,9 @@ public class CollectionController : MonoBehaviour {
             else {
                 SoundController.instance.PlayRandomizedSound(devilPowerUp);
             }
+        }
+        else {
+            SoundController.instance.PlayRandomizedSound(deathPowerUp);
         }
 
         Destroy(collectable);

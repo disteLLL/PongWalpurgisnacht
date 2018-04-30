@@ -16,6 +16,7 @@ public class StartButton : MonoBehaviour {
 
     private GameObject labelPlayer1;
     private GameObject labelPlayer2;
+    private Button startButton;
     private string namePlayer1;
     private string namePlayer2;
 
@@ -23,6 +24,13 @@ public class StartButton : MonoBehaviour {
 
         labelPlayer1 = GameObject.Find("LabelPlayer1");
         labelPlayer2 = GameObject.Find("LabelPlayer2");
+        startButton = this.gameObject.GetComponent<Button>();
+    }
+
+    private void Update() {
+        if(Input.GetButtonDown("Submit")) {
+            startButton.onClick.Invoke();
+        }
     }
 
     public void MoveToSceneWithNames(int sceneID) {

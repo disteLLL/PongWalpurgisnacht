@@ -763,6 +763,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   witchPowerUp: {fileID: 8300000, guid: 4f2e504f078c6b048b671f507e47a1d3, type: 3}
   devilPowerUp: {fileID: 8300000, guid: 431890f44678d3d43a010b16d8fd555c, type: 3}
+  deathPowerUp: {fileID: 8300000, guid: c1313ea54af0521448c2545e7aad1cbd, type: 3}
 --- !u!114 &634453108
 MonoBehaviour:
   m_ObjectHideFlags: 0
