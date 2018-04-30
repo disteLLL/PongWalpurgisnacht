@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CollectionController : MonoBehaviour {
 
+    public AudioClip witchPowerUp;
+    public AudioClip devilPowerUp;
+
     private Collectables collectables;  
 
     private void Awake() {
@@ -20,6 +23,13 @@ public class CollectionController : MonoBehaviour {
 
         if(collectableType != "death") {
             this.gameObject.GetComponent<PowerUpCooldown>().StartCooldown(isPlayer1, collectableColor);
+
+            if (isPlayer1) {
+                SoundController.instance.PlayRandomizedSound(witchPowerUp);
+            }
+            else {
+                SoundController.instance.PlayRandomizedSound(devilPowerUp);
+            }
         }
 
         Destroy(collectable);

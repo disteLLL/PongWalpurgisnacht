@@ -6,12 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class ScoreController : MonoBehaviour {
 
+    public int goalToWin;
+    public float textFlashDuration = 0.5f;
+    public int textFlashFontSize = 150;
     public GameObject scoreTextPlayer1;
     public GameObject scoreTextPlayer2;
-    public int goalToWin;
+    public AudioClip goal1;
+    public AudioClip goal2;
+    public AudioClip goal3;
+    public AudioClip gameOverWitch;
+    public AudioClip gameOverDevil;
 
     private int scorePlayer1 = 0;
     private int scorePlayer2 = 0;
+    private int defaultFontSizePlayer1;
+    private int defaultFontSizePlayer2;
     private Text uiScorePlayer1;
     private Text uiScorePlayer2;
     private bool isWinnerPlayer1 = false;
@@ -21,6 +30,8 @@ public class ScoreController : MonoBehaviour {
 
         uiScorePlayer1 = this.scoreTextPlayer1.GetComponent<Text>();
         uiScorePlayer2 = this.scoreTextPlayer2.GetComponent<Text>();
+        defaultFontSizePlayer1 = uiScorePlayer1.fontSize;
+        defaultFontSizePlayer2 = uiScorePlayer2.fontSize;
     }
  
     private void Update() {
@@ -28,11 +39,13 @@ public class ScoreController : MonoBehaviour {
         if (isWinnerPlayer1) {
 
             PlayerPrefs.SetString("winner", PlayerPrefs.GetString("p1")+" is the winner!");
+            PlayerPrefs.SetInt("winnerIndex", 0);
             StartCoroutine(ChangeLevel());
         }
         else if (isWinnerPlayer2) {
 
             PlayerPrefs.SetString("winner", PlayerPrefs.GetString("p2") + " is the winner!");
+            PlayerPrefs.SetInt("winnerIndex", 1);
             StartCoroutine(ChangeLevel());
         }
     }
@@ -43,6 +56,10 @@ public class ScoreController : MonoBehaviour {
 
         if (this.scorePlayer1 >= this.goalToWin) {
             isWinnerPlayer1 = true;
+            SoundController.instance.PlayRandomizedSound(gameOverWitch);
+        }
+        else {
+            SoundController.instance.PlayRandomizedSound(goal1);
         }
 
         uiScorePlayer1.text = this.scorePlayer1.ToString();
@@ -56,6 +73,10 @@ public class ScoreController : MonoBehaviour {
 
         if (this.scorePlayer2 >= this.goalToWin) {
             isWinnerPlayer2 = true;
+            SoundController.instance.PlayRandomizedSound(gameOverDevil);
+        }
+        else {
+            SoundController.instance.PlayRandomizedSound(goal2, goal3);
         }
 
         uiScorePlayer2.text = this.scorePlayer2.ToString();
@@ -65,19 +86,19 @@ public class ScoreController : MonoBehaviour {
     private IEnumerator TextFlash(bool isPlayer1) {
 
         if (isPlayer1) {
-            uiScorePlayer1.fontSize = 150;
+            uiScorePlayer1.fontSize = textFlashFontSize;
         }
         else {
-            uiScorePlayer2.fontSize = 150;
+            uiScorePlayer2.fontSize = textFlashFontSize;
         }
         
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(textFlashDuration);
 
         if(isPlayer1) {
-            uiScorePlayer1.fontSize = 80;
+            uiScorePlayer1.fontSize = defaultFontSizePlayer1;
         }
         else {
-            uiScorePlayer2.fontSize = 80;
+            uiScorePlayer2.fontSize = defaultFontSizePlayer2;
         }
     }
 

@@ -38,6 +38,14 @@ public class SoundController : MonoBehaviour {
 
         soundSource.pitch = randomPitch;
         soundSource.clip = clips[randomIndex];
+
+        StartCoroutine(Sound(clips));
+    }
+
+    private IEnumerator Sound(AudioClip[] clips) {
+        
         soundSource.Play();
+
+        yield return null;
     }
 }

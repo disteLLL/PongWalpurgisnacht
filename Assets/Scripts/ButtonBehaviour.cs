@@ -5,7 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class ButtonBehaviour : MonoBehaviour {
 
+    public AudioClip gameStart1;
+    public AudioClip gameStart2;
+
     public void MoveToScene(int sceneID) {
+
+        if(this.name == "RestartButton") {
+            SoundController.instance.PlayRandomizedSound(gameStart1, gameStart2);
+        }
 
         SceneManager.LoadScene(sceneID);
         StartCoroutine(ChangeLevel(sceneID));

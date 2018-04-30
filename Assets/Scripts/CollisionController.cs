@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class CollisionController : MonoBehaviour {
 
+    public AudioClip ballRacket1;
+    public AudioClip ballRacket2;
+    public AudioClip ballWall;
+
     private float speedPowerUpAmount;
     private bool speedPowerUp = false;
     private bool isPlayer1;
@@ -57,11 +61,13 @@ public class CollisionController : MonoBehaviour {
 
         if(collision.gameObject.name == "Racket1") {
 
+            SoundController.instance.PlayRandomizedSound(ballRacket1, ballRacket2);
             this.BounceFromRacket(collision);
             this.collectables.SpawnRandomCollectable();
         }
         else if(collision.gameObject.name == "Racket2") {
 
+            SoundController.instance.PlayRandomizedSound(ballRacket1, ballRacket2);
             this.BounceFromRacket(collision);
             this.collectables.SpawnRandomCollectable();
         }
@@ -76,7 +82,7 @@ public class CollisionController : MonoBehaviour {
             StartCoroutine(this.ballMovement.StartBall(false));    
         }
         else {
-
+            SoundController.instance.PlayRandomizedSound(ballWall);
             this.collectables.SpawnRandomCollectable();
         }
     }

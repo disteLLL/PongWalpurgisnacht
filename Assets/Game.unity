@@ -740,9 +740,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8165f201ae033be428b26c0f0937b4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalToWin: 1
+  textFlashDuration: 0.5
+  textFlashFontSize: 150
   scoreTextPlayer1: {fileID: 1128278616}
   scoreTextPlayer2: {fileID: 663033424}
-  goalToWin: 1
+  goal1: {fileID: 8300000, guid: 4e275c0a5ac29bd4ea47cf98d31df4a4, type: 3}
+  goal2: {fileID: 8300000, guid: 9cd6c69d5b484164bafb994b9c7d212f, type: 3}
+  goal3: {fileID: 8300000, guid: 99a28ad8f7d5d5948a688ba76d19f8bb, type: 3}
+  gameOverWitch: {fileID: 8300000, guid: a07e097e37db7dc4cb4ef427741da0e9, type: 3}
+  gameOverDevil: {fileID: 8300000, guid: b3c60ea8027053243aef5e16666cc7cb, type: 3}
 --- !u!114 &634453107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -754,6 +761,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2eb74f9ed806fa43ac2552d9a2cd842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  witchPowerUp: {fileID: 8300000, guid: 4f2e504f078c6b048b671f507e47a1d3, type: 3}
+  devilPowerUp: {fileID: 8300000, guid: 431890f44678d3d43a010b16d8fd555c, type: 3}
 --- !u!114 &634453108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -869,6 +878,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20bc5108a0163414789b63a7a0be0873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballRacket1: {fileID: 8300000, guid: ee9d02b17f1090f42be6671dd9f506e4, type: 3}
+  ballRacket2: {fileID: 8300000, guid: 8047dd923d956f248babf6aaa2d44244, type: 3}
+  ballWall: {fileID: 8300000, guid: 73ea3dd985c68684786f7fd48deb14d7, type: 3}
 --- !u!114 &652259705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1046,12 +1058,12 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 746bd1710774dab4fba9a10d49275be3, type: 3}
-    m_FontSize: 80
+    m_FontSize: 75
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 4
+    m_Alignment: 7
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -1307,18 +1319,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 746bd1710774dab4fba9a10d49275be3, type: 3}
-    m_FontSize: 70
+    m_FontSize: 65
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 5
-    m_AlignByGeometry: 0
+    m_Alignment: 8
+    m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player 2
+  m_Text: Team Teufel
 --- !u!222 &815008131
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1836,12 +1848,12 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 746bd1710774dab4fba9a10d49275be3, type: 3}
-    m_FontSize: 80
+    m_FontSize: 75
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 4
+    m_Alignment: 7
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -2527,6 +2539,41 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114334638297653068, guid: cee9597d970e7f0489532ec62ec6b113,
+        type: 2}
+      propertyPath: m_Text
+      value: Team Hexe
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334638297653068, guid: cee9597d970e7f0489532ec62ec6b113,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334638297653068, guid: cee9597d970e7f0489532ec62ec6b113,
+        type: 2}
+      propertyPath: m_FontData.m_Alignment
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334638297653068, guid: cee9597d970e7f0489532ec62ec6b113,
+        type: 2}
+      propertyPath: m_FontData.m_AlignByGeometry
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114557581222083162, guid: cee9597d970e7f0489532ec62ec6b113,
+        type: 2}
+      propertyPath: m_FontData.m_Alignment
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114557581222083162, guid: cee9597d970e7f0489532ec62ec6b113,
+        type: 2}
+      propertyPath: m_FontData.m_AlignByGeometry
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114557581222083162, guid: cee9597d970e7f0489532ec62ec6b113,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cee9597d970e7f0489532ec62ec6b113, type: 2}
   m_IsPrefabParent: 0
@@ -2590,18 +2637,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 746bd1710774dab4fba9a10d49275be3, type: 3}
-    m_FontSize: 70
+    m_FontSize: 65
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 3
-    m_AlignByGeometry: 0
+    m_Alignment: 6
+    m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player 1
+  m_Text: Team Hexe
 --- !u!222 &1425370468
 CanvasRenderer:
   m_ObjectHideFlags: 0

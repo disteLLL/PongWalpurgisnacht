@@ -37,7 +37,7 @@ public class PowerUpCooldown : MonoBehaviour {
         StartCoroutine(Cooldown());
     }
 
-    IEnumerator Cooldown() {
+    private IEnumerator Cooldown() {
 
         float elapsedTime = 0f;
 

@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class StartButton : MonoBehaviour {
 
+    public AudioClip gameStart1;
+    public AudioClip gameStart2;
+
     [SerializeField]
     private InputField inputFieldPlayer1;
     [SerializeField]
@@ -39,6 +42,7 @@ public class StartButton : MonoBehaviour {
             namePlayer2 = inputFieldPlayer2.text;
         }
 
+        SoundController.instance.PlayRandomizedSound(gameStart1, gameStart2);
         PlayerPrefs.SetString("p1", namePlayer1);
         PlayerPrefs.SetString("p2", namePlayer2);
         SceneManager.LoadScene(sceneID);
