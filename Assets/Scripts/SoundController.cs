@@ -25,6 +25,13 @@ public class SoundController : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
+    private IEnumerator Sound(AudioClip[] clips) {
+
+        soundSource.Play();
+
+        yield return new WaitForEndOfFrame();
+    }
+
     public void PlaySound(AudioClip clip) {
 
         soundSource.clip = clip;
@@ -40,12 +47,5 @@ public class SoundController : MonoBehaviour {
         soundSource.clip = clips[randomIndex];
 
         StartCoroutine(Sound(clips));
-    }
-
-    private IEnumerator Sound(AudioClip[] clips) {
-        
-        soundSource.Play();
-
-        yield return null;
     }
 }

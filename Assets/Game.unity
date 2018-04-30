@@ -748,7 +748,7 @@ MonoBehaviour:
   goal1: {fileID: 8300000, guid: 4e275c0a5ac29bd4ea47cf98d31df4a4, type: 3}
   goal2: {fileID: 8300000, guid: 9cd6c69d5b484164bafb994b9c7d212f, type: 3}
   goal3: {fileID: 8300000, guid: 99a28ad8f7d5d5948a688ba76d19f8bb, type: 3}
-  gameOverWitch: {fileID: 8300000, guid: a07e097e37db7dc4cb4ef427741da0e9, type: 3}
+  gameOverWitch: {fileID: 8300000, guid: cde5e83667ef36d4f99adcb0401acdc2, type: 3}
   gameOverDevil: {fileID: 8300000, guid: b3c60ea8027053243aef5e16666cc7cb, type: 3}
 --- !u!114 &634453107
 MonoBehaviour:
